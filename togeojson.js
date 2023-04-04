@@ -121,7 +121,8 @@ var toGeoJSON = (function () {
                 return serializer.serializeToString(xmlNode);
             } catch (er) {
                 //Other browsers without XML Serializer
-                throw new Error('xml2str - Error: ${e.message} - ${er.message}');
+                console.error(e);
+                throw new er;
             }
         }
     }

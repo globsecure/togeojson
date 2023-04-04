@@ -119,9 +119,9 @@ var toGeoJSON = (function () {
                     throw new Error('Unable to initialize serializer');
                 }
                 return serializer.serializeToString(xmlNode);
-            } catch (e) {
+            } catch (er) {
                 //Other browsers without XML Serializer
-                throw new Error('Xmlserializer not supported');
+                throw new Error('xml2str - Error: ${e.message} - ${er.message}');
             }
         }
     }

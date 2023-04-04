@@ -105,6 +105,7 @@ var toGeoJSON = (function () {
   }
 
   function xml2str(xmlNode) {
+    var serializer;
     try {
       // Gecko- and Webkit-based browsers (Firefox, Chrome), Opera.
       return new XMLSerializer().serializeToString(xmlNode);
@@ -113,11 +114,11 @@ var toGeoJSON = (function () {
         var isNodeEnv = typeof process === 'object' && !process.browser;
         var isTitaniumEnv = typeof Titanium === 'object';
         if (typeof exports === 'object' && (isNodeEnv || isTitaniumEnv)) {
-          serializer = new (require('xmldom').XMLSerializer)();
+          serializer = new (require('@xmldom/xmldom').XMLSerializer)();
         } else {
           throw new Error('Unable to initialize serializer');
         }
-        return serializer.serializeToString(str);
+        return serializer.serializeToString(xmlNode);
       } catch (e) {
         //Other browsers without XML Serializer
         throw new Error('Xmlserializer not supported');

@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "eslint togeojson.js && tape test/*.js",
+    "test": "tape test/*.js",
+    "lint": "eslint togeojson.js",
     "cov": "istanbul cover test/index.js && coveralls < ./coverage/lcov.info",
     "browser": "browserify -t brfs test/index.js > test/bundle.js"
   },
@@ -37,9 +38,10 @@
   },
   "license": "BSD-2-Clause",
   "dependencies": {
-    "xmldom": "~0.6.0",
+    "@xmldom/xmldom": "^0.8.7",
     "concat-stream": "~2.0.0",
-    "minimist": "1.2.8"
+    "minimist": "1.2.8",
+    "xmldom": "~0.6.0"
   },
   "keywords": [
     "kml",

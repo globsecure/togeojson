@@ -55,6 +55,6 @@ function toDOM(_) {
             return new DOMParser().parseFromString(_, 'text/xml');
         }
     } catch (error) {
-        throw new error;
+        throw new Error(error.message);
     }
 }

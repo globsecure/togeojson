@@ -107,8 +107,12 @@ var toGeoJSON = (function () {
     function xml2str(xmlNode) {
         var serializer;
         try {
+            if (typeof XMLSerializer !== 'undefined') {
             // Gecko- and Webkit-based browsers (Firefox, Chrome), Opera.
-            return new XMLSerializer().serializeToString(xmlNode);
+                return new XMLSerializer().serializeToString(xmlNode);
+            }else if (xmlNode && xmlNode.outerHTML) {
+                return xmlNode.outerHTML;
+            }
         } catch (e) {
             try {
                 var isNodeEnv = typeof process === 'object' && !process.browser;
@@ -122,7 +126,7 @@ var toGeoJSON = (function () {
             } catch (er) {
                 //Other browsers without XML Serializer
                 console.error(e);
-                throw new er;
+                throw new Error(er.message);
             }
         }
     }
